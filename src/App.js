@@ -1,9 +1,9 @@
-
-import './App.css';
+import Body from './components/body';
+import './index.css';
 
 function App() {
   return (
-   <div>Jai Shree Ram</div>
+    <Body/>
   );
 }
 
