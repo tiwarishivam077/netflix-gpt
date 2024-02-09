@@ -2,11 +2,15 @@ import React, { useRef, useState }  from 'react'
 import Header from './header'
 import { netflix_home_page_background_url } from '../utils/constants'
 import {ValidateForm} from '../utils/login-form-validator'
-
+import {  createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { auth } from '../utils/firebase';
+import { useNavigate } from "react-router-dom";
 
 
 
 const Login = () => {
+
+    const navigate = useNavigate();
     const [isSignInForm, setIsSignInForm] = useState(true)
 const [errorMsg ,setErrorMsg] =useState()
 
@@ -23,7 +27,58 @@ const handleButtonClick =()=>{
     const error =  ValidateForm(isSignInForm, phone?.current?.value, email?.current?.value, password?.current?.value )
     setErrorMsg(error) 
     if(error) return
-}
+    if(!isSignInForm){
+     createUserWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+     .then((userCredential) => {
+        
+       const user = userCredential.user;
+       console.log(user)
+       
+     })
+     .then(()=>{
+       updateProfile(auth.currentUser, {
+          displayName : name?.current?.value,
+          email : email?.current?.value,
+          photoURL : 'https://cdn.vectorstock.com/i/preview-1x/22/65/logo-with-a-half-of-light-bulb-and-brain-vector-15262265.jpg',
+          emailVerified : false,
+       })
+         console.log('New User Added to Database')
+     })
+     .then(()=>{
+       const user = auth.currentUser;
+   if (user !== null) {
+   console.log(user, 'user-details')
+   navigate('/browse')
+    }
+   })
+     .catch((error) => {
+       const errorCode = error.code;
+       const errorMessage = error.message;
+        
+       setErrorMsg(errorMessage + ' - ' + errorCode)
+       // ..
+     });
+   }
+   else{
+     
+     signInWithEmailAndPassword(auth, email?.current?.value, password?.current?.value)
+     .then((userCredential) => {
+       // Signed in 
+       const user = userCredential.user;
+       console.log(user)
+       navigate('/browse')
+       // ...
+     })
+     
+     .catch((error) => {
+       const errorCode = error.code;
+       const errorMessage = error.message;
+       console.log(error.message)
+       setErrorMsg(errorMessage + ' - ' + errorCode)
+
+     });
+   }
+ }
   return (
     <div>
         <Header/>
