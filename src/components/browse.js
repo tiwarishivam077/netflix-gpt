@@ -1,11 +1,11 @@
 import React from 'react'
+import Header from './header'
 
 const Browse = () => {
   return (
     <div>
-    browse
-    <img alt='logo' src='https://www.hindustantimes.com/ht-img/img/2024/01/22/550x309/First_look_of_Ram_lalla_1705911497228_1705911499475.jpg'/>
-    </div>
+    <Header/>
+   </div>
   )
 }
 

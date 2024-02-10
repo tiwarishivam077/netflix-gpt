@@ -15,7 +15,7 @@ This project is clone of Netflix Webapp with an additional feature of GPT
 - Firebase Setup
 - Deploying app to production
 - Create SignUp User Account
-
+- Create Redux Store with UserSlice
 
 ## Features
 
