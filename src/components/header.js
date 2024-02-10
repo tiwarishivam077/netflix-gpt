@@ -1,28 +1,32 @@
 import React, { useEffect, useState } from 'react'
 import netflix_logo from '../utils/Netflix_Logo_PMS.png'
+import profile from '../utils/profile.jpeg'
 import {  onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, } from 'react-redux'
 import {  removeUser } from '../utils/userSlice';
 
 
 const Header = () => {
   const navigate = useNavigate()
-  const isUser = useSelector(store=>store.user)
   const dispatch = useDispatch()
   const [showSignOutBtn, setShowSignOutBtn] = useState(false)
- 
+  const [showProfiletBtn, setshowProfiletBtn] = useState(false)
 
   useEffect(()=>{
-    onAuthStateChanged(auth, (user) => {
+   const unsubscribe =  onAuthStateChanged(auth, (user) => {
       if (user) {
-        navigate('/browse')       
+        setshowProfiletBtn(true) 
+        navigate('/browse') 
       } else {
         dispatch(removeUser())
+        setshowProfiletBtn(false) 
         navigate('/')
       }
     });
+
+    return ()=> unsubscribe()
   }, []);
 
   const showBtn=()=>{
@@ -48,10 +52,10 @@ const Header = () => {
         />
        
         <div>
-      { isUser &&
+      { showProfiletBtn &&
        <img alt='user' 
        className='w-16 p-2 my-4 rounded-full cursor-pointer'
-        src={isUser.photoURL}
+        src={profile}
         onClick={showBtn}
        />
        }
