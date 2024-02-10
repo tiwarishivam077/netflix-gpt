@@ -8,7 +8,8 @@ const VideoBackground = ({id}) => {
     const trailer = useSelector(store=>store.movies.trailerVideo)
     // console.log(trailer, 'trailer from store')
 
-    const {key, name } = trailer
+    
+    const  key  = trailer?.key
   return (
    
 <div className='w-screen pt-8'>
