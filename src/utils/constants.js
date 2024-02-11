@@ -8,6 +8,14 @@ export const alt_netflix_logo_url ='https://app.gemoo.com/share/image-annotation
 
 export const fetch_now_playing_movies_url ='https://api.themoviedb.org/3/movie/now_playing?page=1'
 
+export const fetch_popular_movies_url ='https://api.themoviedb.org/3/movie/popular?page=1'
+
+export const fetch_toprated_movies_url ='https://api.themoviedb.org/3/movie/top_rated?page=1'
+
+export const fetch_upcoming_movies_url ='https://api.themoviedb.org/3/movie/upcoming?page=1'
+
+
+
 export const API_OPTIONS = {
     method: 'GET',
     headers: {
@@ -15,3 +23,5 @@ export const API_OPTIONS = {
       Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjdiMGU3YTFmNzg2MDE4ODA1NTUwZDE4MDczOTE3NCIsInN1YiI6IjY1Yzc5Y2MyYWFkOWMyMDE3ZGI2ZDY2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kVOprQNCkAsdzHe9rIo0SY5g-SbLmNpaWkmxkIzgsZI'
     }
   };
+
+  export const tmdb_img_url = 'https://image.tmdb.org/t/p/w780'

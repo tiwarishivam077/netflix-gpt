@@ -2,10 +2,16 @@ import UseFetchNowPlayingMovies from '../customHooks/useFetchNowPlayingMovies'
 import Header from './header'
 import { useSelector } from 'react-redux'
 import MainContainer from './mainContainer'
-import SubContainer from './subContainer'
+import SecondaryContainer from './secondaryContainer'
+import UseFetchPopularMovies from '../customHooks/useFetchPopularMovies'
+import UseFetchTopRatedMovies from '../customHooks/useFetchTopRatedMovies'
+import UseFetchUpcomingMovies from '../customHooks/useFetchUpcomingMovies'
 
 const Browse = () => {
    UseFetchNowPlayingMovies()
+   UseFetchPopularMovies()
+   UseFetchTopRatedMovies()
+   UseFetchUpcomingMovies()
   const movies = useSelector(store=>store.movies.nowPlayingMovies)
   
 if(!movies) return
@@ -15,7 +21,7 @@ if(!movies) return
     <div>
     <Header/>
     <MainContainer/>
-    {/* <SubContainer/> */}
+    <SecondaryContainer classname='absolute z-2000'/>
    </div>
   )
 }
