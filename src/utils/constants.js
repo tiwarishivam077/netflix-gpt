@@ -25,3 +25,18 @@ export const API_OPTIONS = {
   };
 
   export const tmdb_img_url = 'https://image.tmdb.org/t/p/w780'
+
+  export const supportedLanguages = [
+    {
+     identifier:'en',
+     name:'English'
+  },
+  {
+    identifier:'hindi',
+    name:'Hindi'
+  },
+ {
+  identifier:'spanish',
+  name:'Spanish'
+},
+]

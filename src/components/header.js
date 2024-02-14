@@ -1,11 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import netflix_logo from '../utils/Netflix_Logo_PMS.png'
 import profile from '../utils/profile.jpeg'
 import {  onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from '../utils/firebase';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, } from 'react-redux'
+import { useDispatch, useSelector, } from 'react-redux'
 import {  removeUser } from '../utils/userSlice';
+import { toggleShowGPTComponent } from '../utils/GPTSlice';
+import { supportedLanguages } from '../utils/constants';
+import {changeLanguage} from '../utils/configSlice'
+
 
 
 const Header = () => {
@@ -13,6 +17,8 @@ const Header = () => {
   const dispatch = useDispatch()
   const [showSignOutBtn, setShowSignOutBtn] = useState(false)
   const [showProfiletBtn, setshowProfiletBtn] = useState(false)
+ const lang = useRef()
+ const showGPTCompoent = useSelector(store=>store.gptComponent.showGPTComponent)
 
   useEffect(()=>{
    const unsubscribe =  onAuthStateChanged(auth, (user) => {
@@ -29,6 +35,7 @@ const Header = () => {
     return ()=> unsubscribe()
   }, []);
 
+
   const showBtn=()=>{
     setShowSignOutBtn(!showSignOutBtn)
   }
@@ -42,6 +49,13 @@ const Header = () => {
 
   }
 
+  const handleGPTButtonClick=()=>{
+    dispatch(toggleShowGPTComponent())
+  }
+
+  const handleLanguageChange=()=>{
+    dispatch(changeLanguage(lang.current.value))
+  }
   return (
     <>
     <div className='absolute px-8 py-2 bg-gradient-to-b from-black z-50 w-screen flex justify-between'>
@@ -51,13 +65,27 @@ const Header = () => {
         alt='logo' 
         />
        
+
         <div>
-      { showProfiletBtn &&
+      { showProfiletBtn && 
+      <div  className='flex justify-between'>
+      { showGPTCompoent &&  <select className='text-white text-xl bg-gray-900 mr-[10px] my-6 py-2 px-4 rounded-sm font-semibold' onChange={handleLanguageChange} ref={lang}>
+       {
+        supportedLanguages.map( el => 
+          <option key={el.identifier} value={el.identifier}>{el.name}</option>
+        )
+       }
+       </select>}
+
+        { <button className='bg-gray-900 text-white text-xl  mr-[10px] my-6 py-2 px-4 rounded-lg font-semibold' 
+        onClick={handleGPTButtonClick}>{ !showGPTCompoent ? 'GPT Search' : 'Home'}</button>}
+
        <img alt='user' 
        className='w-16 p-2 my-4 rounded-full  cursor-pointer'
         src={profile}
         onClick={showBtn}
        />
+       </div>
        }
 
        </div>

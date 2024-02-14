@@ -6,6 +6,8 @@ import SecondaryContainer from './secondaryContainer'
 import UseFetchPopularMovies from '../customHooks/useFetchPopularMovies'
 import UseFetchTopRatedMovies from '../customHooks/useFetchTopRatedMovies'
 import UseFetchUpcomingMovies from '../customHooks/useFetchUpcomingMovies'
+import GPTSearch from './gptSearch'
+
 
 const Browse = () => {
    UseFetchNowPlayingMovies()
@@ -13,6 +15,8 @@ const Browse = () => {
    UseFetchTopRatedMovies()
    UseFetchUpcomingMovies()
   const movies = useSelector(store=>store.movies.nowPlayingMovies)
+
+  const showGPTCompoent = useSelector(store=>store.gptComponent.showGPTComponent)
   
 if(!movies) return
  
@@ -20,8 +24,13 @@ if(!movies) return
   return (
     <div>
     <Header/>
-    <MainContainer/>
-    <SecondaryContainer classname='absolute z-2000'/>
+    {
+       !showGPTCompoent ? 
+       <>
+      <MainContainer/>
+      <SecondaryContainer classname='absolute z-2000'/></> : <GPTSearch/>
+    }
+    
    </div>
   )
 }
