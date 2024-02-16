@@ -24,7 +24,7 @@ if(!movies) return
   return (
     <div>
     <Header/>
-    {
+        {
        !showGPTCompoent ? 
        <>
       <MainContainer/>

@@ -4,6 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
  const moviesSlice = createSlice({
     name : 'movies',
     initialState : {
+        selectedMovieId:null,
         nowPlayingMovies :null,
         trailerVideo:null,
         popularMovies:null,
@@ -11,14 +12,25 @@ import { createSlice } from "@reduxjs/toolkit";
         upComingMovies:null,
         suggestedMovies:null,
         searchedMovieResults:null,
+        movieVideo:null,
     },
 
     reducers :{
-        addNowPlayingMovies : (state, action) =>{
-            state.nowPlayingMovies = action.payload
+        
+        setSelectedMovieId : (state, action)=>{
+          state.selectedMovieId = action.payload 
         },
+        removeSelectedMovieId : (state)=>{
+            state.selectedMovieId = null 
+          },
         addTrailerVideo : (state, action) =>{
             state.trailerVideo = action.payload
+        },
+        addSelectedMovie : (state, action) =>{
+            state.movieVideo = action.payload
+        },
+        addNowPlayingMovies : (state, action) =>{
+            state.nowPlayingMovies = action.payload
         },
         addPopularMovies : (state, action) =>{
             state.popularMovies = action.payload
@@ -33,9 +45,9 @@ import { createSlice } from "@reduxjs/toolkit";
             const {movieNames, movieResults } =action.payload
             state.suggestedMovies = movieResults 
             state.searchedMovieResults = movieNames
-            
         },
        
+
         removeSearchedMovies : (state) =>{
             state.suggestedMovies = null
             state.searchedMovieResults=null
@@ -46,5 +58,5 @@ import { createSlice } from "@reduxjs/toolkit";
  });
 
 
- export const { addNowPlayingMovies, addTrailerVideo, addPopularMovies, addTopRatedMovies, addUpComingMovies, addSuggestedMovies, removeSearchedMovies } = moviesSlice.actions;
+ export const { addNowPlayingMovies,removeSelectedMovieId, addSelectedMovie, addTrailerVideo, setSelectedMovieId, addPopularMovies, addTopRatedMovies, addUpComingMovies, addSuggestedMovies, removeSearchedMovies } = moviesSlice.actions;
  export default moviesSlice.reducer; 

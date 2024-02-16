@@ -1,21 +1,26 @@
 import React from 'react'
 import { tmdb_img_url } from '../utils/constants'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { removeSelectedMovieId, setSelectedMovieId } from '../utils/moviesSlice'
 
 
-const MovieCard = (posterPath) => {
-   let imgUrl = ''
+const MovieCard = ({posterPath , movie_id}) => {
+   
+    const dispatch = useDispatch()
+
     if(!posterPath) return null
-
-    else
-    {
-       imgUrl =  posterPath?.posterPath
-    }
     
+     const setMovieID =()=>{
+      dispatch(removeSelectedMovieId())
+      dispatch(setSelectedMovieId(movie_id))
+     }
     
   return posterPath ? (
-    <div className='m-4 pr-4 overflow-auto-x w-48 border-blue-500 hover:scale-125 transition-transform'>
-    <img alt='imgcard' src={tmdb_img_url + imgUrl }/>
-    </div>
+    <Link to='/watch'>
+    <div className='m-4 pr-4 overflow-auto-x w-48 border-blue-500 hover:scale-125 transition-transform'onClick={setMovieID} >
+    <img alt='imgcard' src={tmdb_img_url + posterPath }/>
+    </div></Link>
   ) : null
 }
 

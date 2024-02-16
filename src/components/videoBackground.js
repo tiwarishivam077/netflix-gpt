@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import UseFetchMoviebyId from '../customHooks/useFetchMoviebyId';
+import UseFetchMoviebyId from '../customHooks/useFetchTrailerbyId';
 import { useSelector } from 'react-redux';
 import { youtube_url } from '../utils/constants';
 
@@ -25,9 +25,9 @@ const VideoBackground = ({id, volume}) => {
 
   return (
    
-<div className='w-screen'>
+<div className='w-screen '>
     <iframe 
-    className='w-screen aspect-video'
+    className='w-screen aspect-video mt-[0px] bg-opacity-50'
     src={ youtube_url + key + endUrl + key}
     title="YouTube video player" 
     frameBorder="0" 
