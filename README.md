@@ -34,7 +34,11 @@ This project is clone of Netflix Webapp with an additional feature of GPT
 - GPT Search Feature
 - GPT Search Bar
 -  (BONUS) Multi-Language Feature in our app
--   
+-   GPT API Integrated
+-   Search Movies Result Shown by TMDB search Movie API
+-   Sound On/Off Feature added
+-   .env file added
+  
 
 ## Features
 

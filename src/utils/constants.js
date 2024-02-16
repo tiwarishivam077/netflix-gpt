@@ -14,13 +14,17 @@ export const fetch_toprated_movies_url ='https://api.themoviedb.org/3/movie/top_
 
 export const fetch_upcoming_movies_url ='https://api.themoviedb.org/3/movie/upcoming?page=1'
 
+export const youtube_url = 'https://www.youtube.com/embed/'
+
+export const search_IMDB_movie_by_name_url ='https://api.themoviedb.org/3/search/movie?query='
+export const search_IMDB_movie_by_name_url_suffix = '&include_adult=false&language=en-US&page=1'
 
 
 export const API_OPTIONS = {
     method: 'GET',
     headers: {
       accept: 'application/json',
-      Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0YjdiMGU3YTFmNzg2MDE4ODA1NTUwZDE4MDczOTE3NCIsInN1YiI6IjY1Yzc5Y2MyYWFkOWMyMDE3ZGI2ZDY2OSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.kVOprQNCkAsdzHe9rIo0SY5g-SbLmNpaWkmxkIzgsZI'
+      Authorization: `Bearer ${process.env.REACT_APP_TMDB_API_URL}`
     }
   };
 
@@ -40,3 +44,4 @@ export const API_OPTIONS = {
   name:'Spanish'
 },
 ]
+

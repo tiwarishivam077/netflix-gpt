@@ -1,13 +1,23 @@
 import React from 'react'
-import { netflix_home_page_background_url } from '../utils/constants'
+import { useSelector } from 'react-redux'
+import Movielist from './movieList'
 
 const GPTMovieSuggestions = () => {
-  return (
-    <>
-    
-    <div>GPTMovieSuggestions</div>
-    </>
-  )
+
+  const {suggestedMovies, searchedMovieResults} = useSelector(store=>store.movies)
+   
+  return  suggestedMovies &&  searchedMovieResults ? (
+    <div className='bg-black p-4 bg-opacity-85'>
+    <div className='mt-[200px] z-20 pl-4 relative'>
+       {
+        suggestedMovies?.map((movies, idx) =>
+        <Movielist key={idx} title={searchedMovieResults[idx]}  movies={movies}/> 
+       )}
+
+      </div>
+    </div>
+      
+  ) :  null;
 }
 
 export default GPTMovieSuggestions

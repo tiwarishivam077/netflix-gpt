@@ -9,6 +9,8 @@ import { createSlice } from "@reduxjs/toolkit";
         popularMovies:null,
         topRatedMovies:null,
         upComingMovies:null,
+        suggestedMovies:null,
+        searchedMovieResults:null,
     },
 
     reducers :{
@@ -27,11 +29,22 @@ import { createSlice } from "@reduxjs/toolkit";
         addUpComingMovies : (state, action) =>{
             state.upComingMovies = action.payload
         },
+        addSuggestedMovies : (state, action) =>{
+            const {movieNames, movieResults } =action.payload
+            state.suggestedMovies = movieResults 
+            state.searchedMovieResults = movieNames
+            
+        },
+       
+        removeSearchedMovies : (state) =>{
+            state.suggestedMovies = null
+            state.searchedMovieResults=null
+        },
 
 
     }
  });
 
 
- export const { addNowPlayingMovies, addTrailerVideo, addPopularMovies, addTopRatedMovies, addUpComingMovies } = moviesSlice.actions;
- export default moviesSlice.reducer;
+ export const { addNowPlayingMovies, addTrailerVideo, addPopularMovies, addTopRatedMovies, addUpComingMovies, addSuggestedMovies, removeSearchedMovies } = moviesSlice.actions;
+ export default moviesSlice.reducer; 

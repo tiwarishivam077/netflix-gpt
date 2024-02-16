@@ -2,25 +2,29 @@ import React from 'react'
 import MovieCard from './movieCard'
 
 const Movielist = ({title, movies}) => {
+ 
+  if(!movies||!title) return null
 
-  // console.log(movies, title, 'movie card')
-  return (
-    <div className='px-4 mx-4 mb-4 pb-4'>
+  movies = movies.filter(movie => movie.poster_path!==null)
+  
+  return movies && title ?  (
+    <div className='px-4 mx-4 mb-4 pt-4 pb-4 bg-black bg-opacity-85'>
      <h1 className='text-3xl  mx-4 text-white'>{title}</h1>
     <div className='flex overflow-x-scroll'>
      <div className='flex'> 
      {
-      movies?.map( movie => 
-        <MovieCard 
-        key={movie.id}
-         posterPath={movie.poster_path} 
+        movies?.map(( movie, idx) => 
+         <MovieCard 
+        key={idx}
+         posterPath={movie?.poster_path} 
          />
+         
       )
      }
      </div>
     </div>
     </div>
-  )
+  ) : null
 } 
 
 export default Movielist
