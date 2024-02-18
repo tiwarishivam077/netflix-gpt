@@ -6,19 +6,24 @@ export const user_icon_url ='https://wallpapers.com/images/hd/netflix-profile-pi
 
 export const alt_netflix_logo_url ='https://app.gemoo.com/share/image-annotation/614847723887263744?codeId=P50bQR8509Z3g'
 
-export const fetch_now_playing_movies_url ='https://api.themoviedb.org/3/movie/now_playing?page=1'
+export const fetch_now_playing_movies_url ='https://api.themoviedb.org/3/movie/now_playing?page=2'
 
-export const fetch_popular_movies_url ='https://api.themoviedb.org/3/movie/popular?page=1'
+export const fetch_popular_movies_url ='https://api.themoviedb.org/3/movie/popular?page=2'
 
-export const fetch_toprated_movies_url ='https://api.themoviedb.org/3/movie/top_rated?page=1'
+export const fetch_toprated_movies_url ='https://api.themoviedb.org/3/movie/top_rated?page=2'
 
-export const fetch_upcoming_movies_url ='https://api.themoviedb.org/3/movie/upcoming?page=1'
+export const fetch_upcoming_movies_url ='https://api.themoviedb.org/3/movie/upcoming?page=2'
 
 export const youtube_url = 'https://www.youtube.com/embed/'
 
 export const search_IMDB_movie_by_name_url ='https://api.themoviedb.org/3/search/movie?query='
 export const search_IMDB_movie_by_name_url_suffix = '&include_adult=false&language=en-US&page=1'
 
+export const sorry_message = 'Sorry..! Video is not available on the store 😢 Please try some other movie 🙏🏿'
+
+export const loading_video_msg = 'Loading... Please wait 🙏🏿 🙏🏿'
+
+export const iframe_end_url = "?controls=1&showinfo=0&rel=0&autoplay=1&loop=1&mute=0&playlist="
 
 export const API_OPTIONS = {
     method: 'GET',

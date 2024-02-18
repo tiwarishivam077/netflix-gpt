@@ -2,9 +2,10 @@ import React from 'react'
 import Login from './login'
 import Browse from './browse'
 import {createBrowserRouter, RouterProvider} from 'react-router-dom'
-import WatchMovie from './watchMovie'
+import { lazy, Suspense } from 'react'
 
 
+const MoviePlayer = lazy(() => import('./watchMovie')) 
 
 const Body = () => {
     
@@ -21,7 +22,7 @@ const Body = () => {
 
         { 
           path : '/watch',
-          element: <WatchMovie/>,
+          element:   <Suspense fallback={<div className='bg-black text-white font-bold text-3xl text-center'>Movie Player is Loading</div>}><MoviePlayer/></Suspense>
         }
 
     ]);

@@ -81,7 +81,7 @@ const Header = () => {
         onClick={handleGPTButtonClick}>{ !showGPTCompoent ? 'GPT Search' : 'Home'}</button>}
 
        <img alt='user' 
-       className='w-16 p-2 my-4 rounded-full  cursor-pointer'
+       className='w-16 p-2 my-4 rounded-full cursor-pointer'
         src={profile}
         onClick={showBtn}
        />

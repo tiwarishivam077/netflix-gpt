@@ -2,7 +2,7 @@ const lang = {
     en: {
         search:'Search',
         identifier:'en',
-        gptSearchPlaceHolder: 'Search Your Favourite Movies here..!',
+        gptSearchPlaceHolder: 'Search Your Favourite Movies or Genres here..!',
     },
     hindi: {
         search:'खोज',

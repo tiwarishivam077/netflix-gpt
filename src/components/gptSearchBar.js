@@ -2,7 +2,7 @@ import React, { useRef } from 'react'
 import lang from '../utils/languageConstants'
 import { useDispatch, useSelector } from 'react-redux'
 import openai from '../utils/openAI'
-import { addSuggestedMovies } from '../utils/moviesSlice'
+import { addSuggestedMovies, toggleShimmerUI } from '../utils/moviesSlice'
 import { API_OPTIONS, search_IMDB_movie_by_name_url, search_IMDB_movie_by_name_url_suffix } from '../utils/constants'
 
 const GPTSearchBar = () => {
@@ -23,10 +23,16 @@ const GPTSearchBar = () => {
       }
     }
 
-   const handleGPTSearchClick=async()=>{
+   const handleGPTSearchClick = async() => {
+     
+     dispatch(toggleShimmerUI(true))
 
-      // Make an API call to GPT AI and get Movie Results
-      const gptQueryPrompt = 'Act as a Movie Recommendation Sysytem and suggest some movies for the query' + searchText.current.value + "only give me names of 10 movies comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya " ;
+    if(searchText.current.value.trim().length===0) return;
+
+    dispatch(addSuggestedMovies({movieNames : null, movieResults: null}))
+       
+    // Make an API call to GPT AI and get Movie Results
+      const gptQueryPrompt = 'Act as a Movie Recommendation Sysytem and suggest some movies (both Indian and English best possible movies) for the query' + searchText.current.value + "only give me names of 10 movies comma seperated like the example result given ahead. Example Result: Gadar, Sholay, Don, Golmaal, Koi Mil Gaya " ;
       const gptResults = await openai.chat.completions.create({
         messages: [{ role: 'user', content: gptQueryPrompt }],
         model: 'gpt-3.5-turbo',
@@ -38,16 +44,20 @@ const GPTSearchBar = () => {
       else{
         const movieList = gptResults?.choices?.[0]?.message?.content.split(',')
         
+        dispatch(addSuggestedMovies({movieNames : movieList, movieResults: null}))
+
          const promiseArray = movieList.map(movie=>fetchMoviefromTMDB(movie))  // returns a promise array
 
          const tmdbResults = await Promise.all(promiseArray)  // when all the above promises will be resolved then only we will  get tmdbresults data
 
          dispatch(addSuggestedMovies({movieNames : movieList, movieResults: tmdbResults}))
+
+         dispatch(toggleShimmerUI(false))
       }
    }
 
   return (
-    <div className='bg-black mx-[400px] w-[50%] rounded-xl my-24 absolute'>
+    <div className='bg-black bg-opacity-50  mx-[400px] w-[50%] rounded-xl mt-24 mb-0 absolute'>
     <form 
     className='p-2 my-3 flex justify-between' 
     onSubmit={(e) => e.preventDefault()}

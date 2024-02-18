@@ -8,7 +8,7 @@ const Movielist = ({title, movies}) => {
   movies = movies.filter(movie => movie.poster_path!==null)
  
   return movies && title ?  (
-    <div className='px-4 mx-4 mb-4 pt-4 pb-4 bg-black bg-opacity-85'>
+    <div className='px-4 mx-4 mb-4 pt-4 pb-4 bg-black bg-opacity-0'>
      <h1 className='text-3xl  mx-4 text-white'>{title}</h1>
     <div className='flex overflow-x-scroll'>
      <div className='flex'> 

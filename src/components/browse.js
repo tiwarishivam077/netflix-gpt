@@ -16,7 +16,7 @@ const Browse = () => {
    UseFetchUpcomingMovies()
   const movies = useSelector(store=>store.movies.nowPlayingMovies)
 
-  const showGPTCompoent = useSelector(store=>store.gptComponent.showGPTComponent)
+  const showGPTComponent = useSelector(store=>store.gptComponent.showGPTComponent)
   
 if(!movies) return
  
@@ -25,7 +25,7 @@ if(!movies) return
     <div>
     <Header/>
         {
-       !showGPTCompoent ? 
+       !showGPTComponent ? 
        <>
       <MainContainer/>
       <SecondaryContainer classname='absolute z-2000'/></> : <GPTSearch/>

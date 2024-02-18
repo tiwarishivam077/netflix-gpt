@@ -25,10 +25,10 @@ const VideoTitle = ({title, overview, toggleSound, id}) => {
     <div className='flex'>
     <div className='m-4 p-4 mr-0'>
     <Link to='/watch'><button className='bg-white  text-black mr-4 px-20 py-4 rounded-lg text-xl hover:bg-gray-400' onClick={setMovieID} > ▶️  Play</button></Link>
-    <button className='bg-gray-500  text-white mr-4 px-20 py-4 rounded-lg text-xl hover:bg-opacity-60'> More Info</button>
+    <button className='bg-gray-500  text-white mr-4 px-20 py-4 rounded-lg text-xl hover:bg-opacity-60'>More Info</button>
     </div>
     <img src= {isSoundOn ? soundOffImg : soundOnImg} alt='sound' 
-    className='bg-white w-12 h-12  rounded-full mt-10 bg-opacity-50 hover:bg-opacity-100 shadow-2xl'
+    className='bg-white w-12 h-12 rounded-full mt-10 bg-opacity-50 hover:bg-opacity-100 shadow-2xl'
     onClick={toggleFullSound}
     />
     </div>

@@ -1,18 +1,24 @@
 
 import { useDispatch, useSelector } from 'react-redux'
 import { API_OPTIONS } from '../utils/constants'
-import { addSelectedMovie } from '../utils/moviesSlice'
+import { addDownloadededMovie, setIsMovieLoaded, setIsMovieLoading } from '../utils/moviesSlice'
 import { useEffect } from 'react'
 
 const UseFetchSelectedMoviebyId = () => {
 
     const dispatch = useDispatch()
     const movieId = useSelector(store=>store.movies.selectedMovieId)
-
+   
     useEffect(()=>{
-        if(movieId)
-        getMovieVideos()
-    },[movieId])
+
+        dispatch(setIsMovieLoading(true))
+        if(movieId){
+            console.log(movieId);
+           
+            getMovieVideos()
+        }
+
+    } ,[movieId])
     
    
     const getMovieVideos = async() => {
@@ -29,10 +35,53 @@ const UseFetchSelectedMoviebyId = () => {
         : behindTheScenes.length ? behindTheScenes[0]
         : json.results[0] 
         
-        dispatch(
-            addSelectedMovie(movieClip)
-        )
-        } 
+        console.log(json.results, 'total movies' )
+        
+        if(movieClip){
+
+            dispatch(
+                setIsMovieLoading(false)
+            )
+
+            dispatch(
+                addDownloadededMovie(movieClip),
+            )
+
+            dispatch(
+                setIsMovieLoaded(true)
+            )
+            
+        }
+        else{
+
+            dispatch(
+                setIsMovieLoading(false)
+            )
+
+            dispatch(
+                addDownloadededMovie(null),
+            )
+
+            dispatch(
+                setIsMovieLoaded(false)
+            )
+
+        }
+    }
+        else{
+            dispatch(
+                addDownloadededMovie(null),
+            )
+
+            dispatch(
+                setIsMovieLoading(false)
+            )
+
+            dispatch(
+                setIsMovieLoaded(false)
+            )
+        }
+        
     }
     
    

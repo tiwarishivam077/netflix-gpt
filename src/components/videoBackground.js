@@ -25,7 +25,7 @@ const VideoBackground = ({id, volume}) => {
 
   return (
    
-<div className='w-screen '>
+<div className='w-screen'>
     <iframe 
     className='w-screen aspect-video mt-[0px] bg-opacity-50'
     src={ youtube_url + key + endUrl + key}
