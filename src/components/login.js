@@ -83,8 +83,8 @@ const handleButtonClick =()=>{
   return (
     <div>
         <Header/>
-        <div className='absolute'>
-        <img src={netflix_home_page_background_url} alt='background' className='h-screen w-screen'/>
+        <div className='absolute '>
+        <img src={netflix_home_page_background_url} alt='background' className='h-full min-h-screen w-screen object-cover'/>
        </div>
        <div className='absolute w-4/12 p-12 mx-auto right-0 left-0 bg-black my-48  text-white rounded-lg bg-opacity-80' >
        <h1 className='text-3xl font-bold py-4 px-2'>{isSignInForm ? 'Sign In' : 'Sign Up'}</h1>
